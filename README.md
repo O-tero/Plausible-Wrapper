@@ -96,15 +96,15 @@ To associate a date to a time period, chain the result with `FromDate()` or
 `OfDate()`:
 
 ```go
-// Get the period for the last 12 months from the 1st of January 2021
-p := plausible.Last12Months().FromDate(plausible.Date{Day:1, Month: 1, Year: 2021})
+// Get the period for the last 12 months from the 1st of January 2022
+p := plausible.Last12Months().FromDate(plausible.Date{Day:1, Month: 1, Year: 2022})
 ```
 
 To make a custom period between 2 dates:
 
 ```go
-// Get the period for the first 15 days of 2021
-p := plausible.CustomPeriod(plausible.Date{Day:1, Month: 1, Year: 2021}, plausible.Date{Day:15, Month: 1, Year: 2021})
+// Get the period for the first 15 days of 2022
+p := plausible.CustomPeriod(plausible.Date{Day:1, Month: 1, Year: 2022}, plausible.Date{Day:15, Month: 1, Year: 2022})
 ```
 
 To know more about time periods, see [Plausible Docs: Time Periods](https://plausible.io/docs/stats-api#time-periods)
