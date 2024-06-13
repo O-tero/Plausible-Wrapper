@@ -1,6 +1,5 @@
 # <a name="top"></a> `go-plausible` - Go Wrapper for the Plausible API
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/andrerfcsantos/go-plausible/plausible.svg)](https://pkg.go.dev/github.com/andrerfcsantos/go-plausible/plausible) 
 Go wrapper/client for the [Plausible](https://plausible.io/) API.
 
 It currently supports the full API of Plausible, which includes:
