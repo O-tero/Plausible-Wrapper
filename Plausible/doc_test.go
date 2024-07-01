@@ -3,7 +3,7 @@ package plausible_test
 import (
 	"fmt"
 
-	"github.com/go-plausible"
+	"github.com/andrerfcsantos/go-plausible/plausible"
 )
 
 func ExampleSite_CurrentVisitors() {
