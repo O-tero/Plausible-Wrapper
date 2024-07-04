@@ -24,3 +24,34 @@ func (t *TimeInterval) toQueryArgs() QueryArgs {
 func (t *TimeInterval) IsEmpty() bool {
 	return string(*t) == ""
 }
+
+// TimePeriod represents a period of time for which to get the results.
+//
+// TimePeriod provides low-level access to the API.
+// For most users, it is recommended to use one of the methods in this
+// package that returns a time period to build a time period,
+// instead of using this struct directly.
+type TimePeriod struct {
+	// Period is a string representing a period of time, e.g "6mo", "12mo", "7d", "30d", "custom", "month", "day" or "custom".
+	// This field is mandatory.
+	Period string
+	// Date is a string representing a date to which the time period refers to, in the format of "yyyy-mm-dd"
+	// This field is optional.
+	Date string
+}
+
+// Last6Months returns a time period referring to the last 6 months.
+// To change the date from which the "last 6 months" refer to,
+// chain the return of this function with OfDate() or FromDate() to add
+// date information to the time period.
+func Last6Months() TimePeriod {
+	return TimePeriod{Period: "6mo"}
+}
+
+// Last12Months returns a time period referring to the last 12 months.
+// To change the date from which the "last 6 months" refer to,
+// chain the return of this function with OfDate or FromDate to add
+// date information to the time period.
+func Last12Months() TimePeriod {
+	return TimePeriod{Period: "12mo"}
+}
