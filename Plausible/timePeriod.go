@@ -56,14 +56,6 @@ func Last12Months() TimePeriod {
 	return TimePeriod{Period: "12mo"}
 }
 
-// Last12Months returns a time period referring to the last 12 months.
-// To change the date from which the "last 6 months" refer to,
-// chain the return of this function with OfDate or FromDate to add
-// date information to the time period.
-func Last12Months() TimePeriod {
-	return TimePeriod{Period: "12mo"}
-}
-
 // Last7Days returns a time period referring to the last 7 days.
 // To change the date from which the "last 7 days" refer to,
 // chain the return of this function with OfDate or FromDate to add
