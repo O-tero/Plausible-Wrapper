@@ -55,3 +55,81 @@ func Last6Months() TimePeriod {
 func Last12Months() TimePeriod {
 	return TimePeriod{Period: "12mo"}
 }
+
+// Last12Months returns a time period referring to the last 12 months.
+// To change the date from which the "last 6 months" refer to,
+// chain the return of this function with OfDate or FromDate to add
+// date information to the time period.
+func Last12Months() TimePeriod {
+	return TimePeriod{Period: "12mo"}
+}
+
+// Last7Days returns a time period referring to the last 7 days.
+// To change the date from which the "last 7 days" refer to,
+// chain the return of this function with OfDate or FromDate to add
+// date information to the time period.
+func Last7Days() TimePeriod {
+	return TimePeriod{Period: "7d"}
+}
+
+// Last30Days returns a time period referring to the last 30 days.
+// To change the date from which the "last 30 days" refer to,
+// chain the return of this function with OfDate or FromDate to add
+// date information to the time period.
+func Last30Days() TimePeriod {
+	return TimePeriod{Period: "30d"}
+}
+
+// MonthPeriod returns a time period referring to a month.
+// If no additional date information is given, this defaults to mean "the current month".
+// To change the month to which this date refers to,
+// chain the return of this function with OfDate or FromDate to add
+// date information to the time period.
+func MonthPeriod() TimePeriod {
+	return TimePeriod{Period: "month"}
+}
+
+// DayPeriod returns a time period referring to a day.
+// If no additional date information is given, this defaults to mean "today".
+// To change the day to which this date refers to,
+// chain the return of this function with OfDate or FromDate to add
+// date information to the time period.
+func DayPeriod() TimePeriod {
+	return TimePeriod{Period: "day"}
+}
+
+// CustomPeriod allows to build a custom time period/range between the two given dates.
+func CustomPeriod(fromDate Date, toDate Date) TimePeriod {
+	return TimePeriod{
+		Period: "custom",
+		Date:   fmt.Sprintf("%s,%s", fromDate.toPlausibleFormat(), toDate.toPlausibleFormat()),
+	}
+}
+
+// IsEmpty tells whether the time period is empty
+func (tp TimePeriod) IsEmpty() bool {
+	return tp.Period == ""
+}
+
+// OfDate adds date information to a time period. An alias of FromDate.
+func (tp TimePeriod) OfDate(date Date) TimePeriod {
+	return tp.FromDate(date)
+}
+
+// FromDate adds date information to a time period.
+func (tp TimePeriod) FromDate(date Date) TimePeriod {
+	tp.Date = date.toPlausibleFormat()
+	return tp
+}
+
+func (tp *TimePeriod) toQueryArgs() QueryArgs {
+	qargs := QueryArgs{
+		QueryArg{Name: "period", Value: tp.Period},
+	}
+
+	if tp.Date != "" {
+		qargs.Add(QueryArg{Name: "date", Value: tp.Date})
+	}
+
+	return qargs
+}
